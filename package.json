@@ -1,0 +1,14 @@
+{
+  "name": "easy_node_mqtt",
+  "version": "1.0.0",
+  "description": "A starter template for developing MQTT Pub/Sub systems.",
+  "main": "publisher.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^5.9.1"
+  }
+}
