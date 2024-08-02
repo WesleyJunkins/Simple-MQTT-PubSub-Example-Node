@@ -2,20 +2,48 @@ const mqtt = require("mqtt")
 
 // Go to https://www.hivemq.com/mqtt/public-mqtt-broker/ for info.
 
-const broker_address = "mqtt://broker.hivemq.com"
-const topic = "test/myTopic"
-const message = "Hello, this is publisher Wes!"
+function create_client(username, password, broker_address, clientId = "client", port = 8883) {
+    const options = {
+        clientId: clientId,
+        username: username,
+        password: password,
+        port: port,
+        protocol: "mqtts"
+    }
+    const client = mqtt.connect("mqtts://" + broker_address, options)
+    return client
+}
 
-const client = mqtt.connect(broker_address)
-
-client.on("connect", () => {
-    console.log("Connected to broker")
-
-    client.publish(topic, message, () => {
-        console.log("Published " + message + " to topic " + topic + ".")
+function pub(client, topic, message) {
+    client.publish(topic, message, (err) => {
+        if (err) {
+            console.error("Failed to publish: " + err.message)
+        }
     })
+}
+
+// ~~~   your code starts here   ~~~
+
+// Create client
+const client = create_client("testPublisher1", "Htil2024ExamplePassword", "ac468314de194d56906aa94b21f74655.s1.eu.hivemq.cloud")
+
+// Keep the client connection alive
+client.on('connect', () => {
+    console.log("Connected to broker")
 })
 
-client.on("error", (err) => {
-    console.error("Connection error: " + err)
+client.on('error', (err) => {
+    console.error("Connection error: " + err.message)
 })
+
+client.on('close', () => {
+    console.log("Connection closed")
+})
+
+// Publish a counter message every 0.01 seconds
+let counter = 0
+setInterval(() => {
+    pub(client, "htil/test/topic", counter.toString())
+    console.log("Published message " + counter)
+    counter += 1
+}, 10)
