@@ -1,5 +1,7 @@
 A simple example of a publisher/subscriber system using MQTT messages in Node.JS.
 
+---
+
 To start using this code, save everything into a directory.
 
 Use   ```npm install```   to install all required packages.
