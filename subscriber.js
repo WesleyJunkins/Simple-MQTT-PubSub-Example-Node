@@ -31,7 +31,7 @@ function on_message(topic, message) {
 }
 
 // Create client
-const client = create_client("testSubscriber1", "Htil2024ExamplePassword", "ac468314de194d56906aa94b21f74655.s1.eu.hivemq.cloud")
+const client = create_client("testSubscriber2", "Htil2024ExamplePassword", "ac468314de194d56906aa94b21f74655.s1.eu.hivemq.cloud", clientId = "85694085487034806769473298")
 
 // Subscribe to a topic
 sub(client, "htil/test/topic")

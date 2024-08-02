@@ -25,7 +25,7 @@ function pub(client, topic, message) {
 // ~~~   your code starts here   ~~~
 
 // Create client
-const client = create_client("testPublisher1", "Htil2024ExamplePassword", "ac468314de194d56906aa94b21f74655.s1.eu.hivemq.cloud")
+const client = create_client("testPublisher1", "Htil2024ExamplePassword", "ac468314de194d56906aa94b21f74655.s1.eu.hivemq.cloud", clientId = "7589475092390435864039726543")
 
 // Keep the client connection alive
 client.on('connect', () => {
